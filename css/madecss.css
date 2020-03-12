@@ -1,0 +1,90 @@
+@CHARSET "UTF-8"
+@font-face{
+        font-family: '서울한강체 B';
+        src: url(font/SeoulHangangB.ttf) format('truetype');
+}
+@font-face{
+        font-family: '나눔스퀘어라운드 ExtraBold';
+        src: url(font/NanumSquareRoundEB.ttf) format('truetype');
+}
+     .bg-main{
+         background-color:#003366;}
+      html,body{
+        font-family: '서울한강체 B','맑은고딕',sans-serif;
+        font-size:100%; background-color:#f6f6f6;
+      }
+      .bg-hd{
+        background-size:cover;
+        font-family: '나눔스퀘어라운드 ExtraBold','맑은고딕',sans-serif;
+        /* text-shadow: 3px 2px 2px white; */
+      }
+      .active{font-size: 150%;}
+      .navbar-brand{
+        font-size: 170%;
+        margin-left: 10px;
+      }
+      .navbar-nav{padding-top: 4px; padding-bottom: 4px;}
+       a.top {
+        position: fixed;
+        right: 15px;
+        bottom: 50px;
+        font-size: 50px;
+        display: none;
+       }
+       a.top:hover{
+        color:white;
+       }
+       .overlay{
+         position: absolute;
+         top: 0;
+         bottom: 0;
+         left: 0;
+         right: 0;
+         content: '';
+         opacity: 1;
+         background: rgba(255, 255, 255, 0);
+         background: -moz-linear-gradient(top, rgba(255, 255, 255, 0) 0%, #f6f6f6 100%);
+         background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255, 255, 255, 0)), color-stop(100%, #f6f6f6));
+         background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 0%, #f6f6f6 100%);
+         background: -o-linear-gradient(top, rgba(255, 255, 255, 0) 0%, #f6f6f6 100%);
+         background: -ms-linear-gradient(top, rgba(255, 255, 255, 0) 0%, #f6f6f6 100%);
+         background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0)), to(#f6f6f6));
+         background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #f6f6f6 100%);
+         filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f6f6f6', GradientType=0 );
+         }
+      .hero-wrap {
+        width: 100%;
+        position: relative;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: top center;
+        height: 500px;
+      }
+       .CurrIcon, .CurrTemp{
+         display: inline-block;
+         text-align: center;
+       }
+       .CurrIcon{
+         margin-right: 2px;
+       }
+       #dpTime{
+         font-size: 200%;
+         margin-right: 20px;
+         font-weight: bold;
+       }
+       .cIT{
+         padding-top:200px;
+         font-size:2.5rem;
+         z-index: 4;
+       }
+       .ciD{
+         font-size:2rem;
+         z-index: 4;
+       }
+       .but-gps{
+         margin-left: 5px;
+         font-size: 1.8rem;
+         color:white;
+         text-shadow: 3px 2px 2px #595959;
+       }
+       .navmy{font-size: 130%;}
