@@ -99,11 +99,10 @@ let currentCity = {
   'Pyeongtaek-si' : '경기도 평택시',
   'Seonghwan' : '충청남도 천안시 서북구 성환읍'
 }
-// var $LatitudeData=37.553828; //초기값 서울역
-// var $LongitudeData=126.969652;
-var $IdData = 1838343 // 평택id
+var $LatitudeData=37.553828; //초기값 서울역
+var $LongitudeData=126.969652;
 $.ajax({
-  url: "http://api.openweathermap.org/data/2.5/weather?APPID=19cf2b4d24f78ab577061da24b4c9a2d&units=metric&id="+$IdData+"",
+  url: "https://api.openweathermap.org/data/2.5/weather?APPID=19cf2b4d24f78ab577061da24b4c9a2d&units=metric&lat="+$LatitudeData+'&lon='+$LongitudeData+" ",
   dataType: 'json',
   type: 'GET',
   success: function(data){
