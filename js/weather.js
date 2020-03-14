@@ -137,7 +137,7 @@ function showPosition(position) {
       var $Temp = Math.floor(data.main.temp) + '℃';
       var $city = data.name;
       var $Description = data.weather[0].id;
-      $('.CurrIcon').html('<i class="' + weatherIcon[$Icon] + '"></i>');
+      $('.CurrIcon').html('<i class="' + weatherIcon[$Icon] + '"></i>'||$Icon);
       $('.CurrTemp').html($Temp);
       $('.CurrCity').html(currentCity[$city]||$city);
       $('.CurrDescription').html(weatherDescription[$Description]);
