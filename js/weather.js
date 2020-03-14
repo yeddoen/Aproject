@@ -101,6 +101,7 @@ let currentCity = {
 }
 var $LatitudeData=37.553828; //초기값 서울역
 var $LongitudeData=126.969652;
+
 $.ajax({
   url: "https://api.openweathermap.org/data/2.5/weather?APPID=19cf2b4d24f78ab577061da24b4c9a2d&units=metric&lat="+$LatitudeData+'&lon='+$LongitudeData+" ",
   dataType: 'json',
@@ -108,11 +109,11 @@ $.ajax({
   success: function(data){
     var $Icon = (data.weather[0].icon).substr(0.3);
     var $Temp = Math.floor(data.main.temp) + '℃';
-    var $city = data.name;
+    var $City = data.name;
     var $Description = data.weather[0].id;
     $('.CurrIcon').append('<i class="' + weatherIcon[$Icon] + '"></i>');
     $('.CurrTemp').prepend($Temp);
-    $('.CurrCity').append(currentCity[$city]);
+    $('.CurrCity').append(currentCity[$City]);
     $('.CurrDescription').append(weatherDescription[$Description]);
   }
 })
