@@ -139,7 +139,7 @@ function showPosition(position) {
       var $Description = data.weather[0].id;
       $('.CurrIcon').html('<i class="' + weatherIcon[$Icon] + '"></i>');
       $('.CurrTemp').html($Temp);
-      $('.City').html(currentCity[$city]);
+      $('.CurrCity').html(currentCity[$city]);
       $('.CurrDescription').html(weatherDescription[$Description]);
     }
   })
