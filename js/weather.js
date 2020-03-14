@@ -112,7 +112,7 @@ $.ajax({
     var $Description = data.weather[0].id;
     $('.CurrIcon').append('<i class="' + weatherIcon[$Icon] + '"></i>');
     $('.CurrTemp').prepend($Temp);
-    $('.City').append(currentCity[$city]);
+    $('.CurrCity').append(currentCity[$city]);
     $('.CurrDescription').append(weatherDescription[$Description]);
   }
 })
