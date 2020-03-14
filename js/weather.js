@@ -111,7 +111,7 @@ $.ajax({
     var $Temp = Math.floor(data.main.temp) + '℃';
     var $City = data.name;
     var $Description = data.weather[0].id;
-    $('.CurrIcon').prepend('<i class="' + weatherIcon[$Icon] + '"></i>');
+    $('.CurrIcon').prepend('<i aria-hidden="true" class="' + weatherIcon[$Icon] + '"></i>');
     $('.CurrTemp').prepend($Temp);
     $('.CurrCity').append(currentCity[$City]);
     $('.CurrDescription').append(weatherDescription[$Description]);
