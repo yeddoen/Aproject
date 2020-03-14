@@ -63,7 +63,7 @@ $( '.top' ).click( function() {
   $( 'html, body' ).animate( { scrollTop : 0 }, 400 );
   return false;
 } );
-// //SameSite
-// document.cookie = "safeCookie1=foo; SameSite=Lax";
-// document.cookie = "sateCookie2=foo";
-// document.cookie = "crossCookie=bar; SameSite=None; Secure";
+//SameSite
+document.cookie = "safeCookie1=foo; SameSite=Lax";
+document.cookie = "sateCookie2=foo";
+document.cookie = "crossCookie=bar; SameSite=None; Secure";
