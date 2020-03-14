@@ -18,8 +18,8 @@ let weatherIcon = {
   '09n' : 'wi wi-night-alt-showers',
   '10n' : 'wi wi-night-alt-rain',
   '11n' : 'wi wi-night-alt-lightning',
-  '13n' : 'wi wi wi-night-alt-snow',
-  '50n' : 'fas fa-smog'
+  '13n' : 'wi wi-night-alt-snow',
+  '50n' : 'w1 w1-night-fog'
 };
 let weatherDescription = {
   '200' : '약한 비를 동반한 천둥번개',
@@ -111,7 +111,7 @@ $.ajax({
     var $Temp = Math.floor(data.main.temp) + '℃';
     var $City = data.name;
     var $Description = data.weather[0].id;
-    $('.CurrIcon').append('<i class="' + weatherIcon[$Icon] + '"></i>');
+    $('.CurrIcon').prepend('<i class="' + weatherIcon[$Icon] + '"></i>');
     $('.CurrTemp').prepend($Temp);
     $('.CurrCity').append(currentCity[$City]);
     $('.CurrDescription').append(weatherDescription[$Description]);
