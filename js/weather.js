@@ -19,7 +19,7 @@ let weatherIcon = {
   '10n' : 'wi wi-night-alt-rain',
   '11n' : 'wi wi-night-alt-lightning',
   '13n' : 'wi wi wi-night-alt-snow',
-  '50n' : 'wi wi-night-fog'
+  '50n' : 'fas fa-smog'
 };
 let weatherDescription = {
   '200' : '약한 비를 동반한 천둥번개',
