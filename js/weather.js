@@ -130,7 +130,7 @@ function showPosition(position) {
   $LongitudeData=position.coords.longitude;
 
   $.ajax({
-    url: "http://api.openweathermap.org/data/2.5/weather?APPID=19cf2b4d24f78ab577061da24b4c9a2d&units=metric&lat="+$LatitudeData+'&lon='+$LongitudeData+" ",
+    url: "https://api.openweathermap.org/data/2.5/weather?APPID=19cf2b4d24f78ab577061da24b4c9a2d&units=metric&lat="+$LatitudeData+'&lon='+$LongitudeData+" ",
     dataType: 'json',
     type: 'GET',
     success: function(data){
