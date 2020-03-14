@@ -111,7 +111,7 @@ $.ajax({
     var $Temp = Math.floor(data.main.temp) + '℃';
     var $City = data.name;
     var $Description = data.weather[0].id;
-    $('.CurrIcon').prepend('<i aria-hidden="true" class="' + weatherIcon[$Icon] + '"></i>');
+    $('.CurrIcon').prepend('<i aria-hidden="false" class="' + weatherIcon[$Icon] + '"></i>');
     $('.CurrTemp').prepend($Temp);
     $('.CurrCity').append(currentCity[$City]);
     $('.CurrDescription').append(weatherDescription[$Description]);
@@ -138,7 +138,7 @@ function showPosition(position) {
       var $Temp = Math.floor(data.main.temp) + '℃';
       var $city = data.name;
       var $Description = data.weather[0].id;
-      $('.CurrIcon').html('<i aria-hidden="true" class="' + weatherIcon[$Icon] + '"></i>');
+      $('.CurrIcon').html('<i aria-hidden="false" class="' + weatherIcon[$Icon] + '"></i>');
       $('.CurrTemp').html($Temp);
       $('.CurrCity').html(currentCity[$city]||$city);
       $('.CurrDescription').html(weatherDescription[$Description]);
