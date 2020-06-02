@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title> 국지성 대기환경 예측 - 텐서플로우를 활용한</title>
+    <!-- css -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://bootswatch.com/4/materia/bootstrap.min.css">
+    <link rel="stylesheet" href="https://bootswatch.com/4/materia/bootstrap.css">
+    <link href="./css/style.css" rel="stylesheet">
+    <link href="./css/madecss.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+ </head>
+  <body>
+    <header class="hero-wrap text-center mb-0 bg-hd text-dark" style="background-image: url(./file/cloudback1.gif);" data-stellar-background-ratio="0.5">
+      <div class="overlay"></div>
+        <div class="container">
+          <div class="dre row description align-items-center justify-content-center">
+            </div>
+          </div>
+    </header>
+    <nav class="navbar navbar-expand-sm fixed-top navbar-light navbar-right bg-white bg-hd">
+      <span id="dpTime"></span>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarColor02">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item navmy">
+            <a class="nav-link" href="https://secretdoen.shop/index.html"> HOME </a>
+          </li>
+          <li class="nav-item navmy">
+            <a class="nav-link" href="http://secretdoen.shop/menu-2.html"> 실시간 정보 </a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="https://secretdoen.shop/menu-3.html"> 예측 정보 <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item navmy">
+            <a class="nav-link" href="http://secretdoen.shop/menu-4.html"> About </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <section>
+      <article>
+        <a href="#" class="top"><i class="fas fa-arrow-alt-circle-up"></i></a>
+      </article>
+      <article class="container">
+        <div class="card border-primary mb-3 bg-info text-center" style="max-width: 100rem;">
+          <div class="card-body">
+            <div class="bootstrap-modal">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-light modalmy2 text-center d-flex justify-content-between" data-toggle="modal" data-target="#basicModal"><i class="fas fa-search-location" style="font-size:20px; padding-top: 7px;color:#3399ff"></i></button>
+                <!-- Modal -->
+                <div class="modal fade" id="basicModal">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">지역 검색하기</h5>
+                                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                            </div>
+                            <div class="modal-body">
+                              <div class="container search-table">
+                                <div class="search-box">
+                                  <div class="row">
+                                    <div class="col-md-4">
+                                      <div style="padding-top:5px; font-size:16px">위치로 찾기&nbsp;<a href="#" onclick="getLocation()" data-dismiss="modal"><span class="but-gps fas fa-map-marker-alt"></span></a></div>
+                                    </div>
+                                    <div class="col-md-8">
+                                      <input type="text" id="myInput2" style="width:100%;" onkeyup="myFunction2()" class="form-control" placeholder="지역명 입력">
+                                    </div>
+                                  </div>
+                                </div><hr/>
+                                <div class="search-list" style="overflow:auto; width:100%; height:400px;">
+                                  <table class="table text-center table-hover-cells table-bordered" id="myTable2" style="font-size:13px">
+                                      <tbody>
+                                        <tr>
+                                            <td>서울 용산</td>
+                                            <td>서울 종로</td>
+                                            <td>서울 중구</td>
+                                            <td>서울 잠실</td>
+                                        </tr>
+                                        <tr>
+                                            <td>서울 서초</td>
+                                            <td>경기 안양</td>
+                                            <td>경기 안성</td>
+                                            <td>경기 안산</td>
+                                        </tr>
+                                        <tr>
+                                          <td>경기 여주</td>
+                                          <td>경기 화성</td>
+                                          <td>경기 이천</td>
+                                          <td>경기 가평</td>
+                                        </tr>
+                                        <tr>
+                                          <td>경기 김포</td>
+                                          <td>경기 고양</td>
+                                          <td>경기 군포</td>
+                                          <td>경기 구리</td>
+                                        </tr>
+                                        <tr>
+                                          <td>경기 남양주</td>
+                                          <td>경기 과천</td>
+                                          <td>경기 파주</td>
+                                          <td>경기 용인</td>
+                                        </tr>
+                                        <tr>
+                                          <td>경기 오산</td>
+                                          <td>경기 부천</td>
+                                          <td>경기 평택</td>
+                                          <td>경기 수원</td>
+                                        </tr>
+                                        <tr>
+                                          <td>경기 의정부</td>
+                                          <td>경기 포천</td>
+                                          <td>경기 양주</td>
+                                          <td>경기 연천</td>
+                                        </tr>
+                                        <tr>
+                                          <td>경기 광주</td>
+                                          <td>인천 중구</td>
+                                          <td>인천 남동구</td>
+                                          <td>인천 강화</td>
+                                        </tr>
+                                        <tr>
+                                          <td>대전 은행동</td>
+                                          <td>대전 대흥동</td>
+                                          <td>광주 북구</td>
+                                          <td>광주 동구</td>
+                                        </tr>
+                                        <tr>
+                                          <td>전북 전주</td>
+                                          <td>전북 장수</td>
+                                          <td>전북 진안</td>
+                                          <td>전북 임실</td>
+                                        </tr>
+                                        <tr>
+                                          <td>전북 순창</td>
+                                          <td>전북 부안</td>
+                                          <td>전북 무주</td>
+                                          <td>전북 군산</td>
+                                        </tr>
+                                        <tr>
+                                          <td>전북 고창</td>
+                                          <td>전북 김제</td>
+                                          <td>전북 익산</td>
+                                          <td>전북 완주</td>
+                                        </tr>
+                                        <tr>
+                                          <td>전남 영암</td>
+                                          <td>전남 영광</td>
+                                          <td>전남 해남</td>
+                                          <td>전남 장흥</td>
+                                        </tr>
+                                        <tr>
+                                          <td>전남 함평</td>
+                                          <td>전남 화순</td>
+                                          <td>전남 고흥</td>
+                                          <td>전남 구례</td>
+                                        </tr>
+                                        <tr>
+                                          <td>전남 광양</td>
+                                          <td>전남 목포</td>
+                                          <td>전남 보성</td>
+                                          <td>전남 나주</td>
+                                        </tr>
+                                        <tr>
+                                          <td>전남 여수</td>
+                                          <td>전남 순천</td>
+                                          <td>부산 중구</td>
+                                          <td>부산 동구</td>
+                                        </tr>
+                                        <tr>
+                                          <td>부산 기장</td>
+                                          <td>대구 중구</td>
+                                          <td>대구 동구</td>
+                                          <td>대구 북구</td>
+                                        </tr>
+                                        <tr>
+                                          <td>대구 달서구</td>
+                                          <td>울산 중구</td>
+                                          <td>울산 남구</td>
+                                          <td>강원 강릉</td>
+                                        </tr>
+                                        <tr>
+                                          <td>강원 삼척</td>
+                                          <td>강원 홍천</td>
+                                          <td>강원 인제</td>
+                                          <td>강원 춘천</td>
+                                        </tr>
+                                        <tr>
+                                            <td>강원 고성</td>
+                                            <td>강원 영월</td>
+                                            <td>강원 양양</td>
+                                            <td>강원 양구</td>
+                                        </tr>
+                                        <tr>
+                                          <td>강원 원주</td>
+                                          <td>강원 철원</td>
+                                          <td>강원 태백</td>
+                                          <td>강원 속초</td>
+                                        </tr>
+                                        <tr>
+                                          <td>강원 화천</td>
+                                          <td>경북 의성</td>
+                                          <td>경북 고령</td>
+                                          <td>경북 김천</td>
+                                        </tr>
+                                        <tr>
+                                          <td>경북 경산</td>
+                                          <td>경북 안동</td>
+                                          <td>경북 포항</td>
+                                          <td>경북 영천</td>
+                                        </tr>
+                                        <tr>
+                                          <td>경북 예천</td>
+                                          <td>경북 칠곡</td>
+                                          <td>경북 울진</td>
+                                          <td>경북 문경</td>
+                                        </tr>
+                                        <tr>
+                                          <td>경북 의성</td>
+                                          <td>경북 경주</td>
+                                          <td>경북 군위</td>
+                                          <td>경북 구미</td>
+                                        </tr>
+                                        <tr>
+                                          <td>경북 청송</td>
+                                          <td>경남 고성</td>
+                                          <td>경남 김해</td>
+                                          <td>경남 함안</td>
+                                        </tr>
+                                        <tr>
+                                          <td>경남 밀양</td>
+                                          <td>경남 남해</td>
+                                          <td>경남 양산</td>
+                                          <td>경남 거제</td>
+                                        </tr>
+                                        <tr>
+                                          <td>경남 창원</td>
+                                          <td>경남 진주</td>
+                                          <td>경남 하동</td>
+                                          <td>경남 함양</td>
+                                        </tr>
+                                        <tr>
+                                          <td>충북 괴산</td>
+                                          <td>충북 충주</td>
+                                          <td>충북 청주</td>
+                                          <td>충북 증평</td>
+                                        </tr>
+                                        <tr>
+                                          <td>충북 진천</td>
+                                          <td>충북 제천</td>
+                                          <td>충북 영동</td>
+                                          <td>충북 옥천</td>
+                                        </tr>
+                                        <tr>
+                                          <td>충남 예산</td>
+                                          <td>충남 천안</td>
+                                          <td>충남 부여</td>
+                                          <td>충남 태안</td>
+                                        </tr>
+                                        <tr>
+                                          <td>충남 서산</td>
+                                          <td>충남 성환</td>
+                                          <td>충남 논산</td>
+                                          <td>충남 당진</td>
+                                        </tr>
+                                        <tr>
+                                          <td>충남 공주</td>
+                                          <td>충남 홍성</td>
+                                          <td>충남 금산</td>
+                                          <td>충남 아산</td>
+                                        </tr>
+                                        <tr>
+                                          <td>충남 보령</td>
+                                          <td>제주 삼도동</td>
+                                          <td>제주 애월</td>
+                                          <td>제주 연동</td>
+                                        </tr>
+                                    </tbody>
+                                  </table>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-light" onclick="SearchNameWeather2()" data-dismiss="modal">𝖮𝖪</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-title"><div id="forecastCITY"></div>&nbsp;<h4 style="display: inline-block; color:white">의 날씨 예보</h4></div>
+            <div class="row">
+              <div class="col-lg-5 tablescroll" style="width:100%;height:400px; overflow:auto; overflow-x:hidden">
+                <div class="card-body">
+                    <table class="table table-borderless foretable" width="100%" border="0" cellspacing="0" cellpadding="0">
+                      <tbody id="forecastTbody">
+                        <!-- 내용은 javascript -->
+                      </tbody>
+                    </table>
+                </div>
+              </div>
+              <div class="col-lg-7">
+                  <div class="card-body text-center">
+                    <div class="bg-white" id="chartforecast" style="width:100%;height:350px;border-radius:15px"></div>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12 text-center pt-3" id="compare_xn">
+            <div class="card border-primary mb-3" style="max-width: 100rem;">
+              <div class="card-body">
+                <div class="timetable"><h4 class="card-title" id="dated"></h4></div>
+                <button type="button" id="relo_btn"class="btn mb-1 btn-outline-dark btn" onclick="window.location.reload()"style="float:right;"><i class="fas fa-redo-alt"></i></button>
+                <div class="row">
+                  <div class="col-md-8 text-center">
+                    <div class="card-body">
+                      <div id="tests"></div>
+                      <div class="table-responsive" >
+                          <table class="table table-hover table-borderless table-light border-my">
+                              <thead class="bg-dark">
+                                  <tr>
+                                      <th></th>
+                                      <th>실제 대기질</th>
+                                      <th>예측한 대기질</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <tr>
+                                      <th class="row-header bg-dark" style="width:10%">PM<small>10</small></th>
+                                      <td id="pm10">-</td>
+                                      <td id="Pred10">-</td>
+                                  </tr>
+                                  <tr>
+                                      <th class="row-header bg-dark">PM<small>2.5</small></th>
+                                      <td id=pm25>-</td>
+                                      <td id=Pred25>-</td>
+                                  </tr>
+                                  <tr>
+                                      <th class="row-header bg-dark">O<small>3</small></th>
+                                      <td id="o3"></td>
+                                      <td id="Predo3">-</td>
+                                  </tr>
+                                  <tr>
+                                      <th class="row-header bg-dark">CO</th>
+                                      <td id="co">-</td>
+                                      <td id="Predco">-</td>
+                                  </tr>
+                                  <tr>
+                                      <th class="row-header bg-dark">NO<small>2</small></th>
+                                      <td id="no2">-</td>
+                                      <td id="Predno2">-</td>
+                                  </tr>
+                                  <tr>
+                                      <th class="row-header bg-dark">SO<small>2</small></th>
+                                      <td id="so2">-</td>
+                                      <td id="Predso2">-</td>
+                                  </tr>
+                              </tbody>
+                          </table>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="col-xs-3 text-center" style="margin-left:30px;">
+                    <div class="card-body">
+                      <div class="progress-box text-center" style="padding-top:10%;"><br/>
+                        <h5 class="text-center">적중률(%)</h5><br/>
+                        <input type="text" class="knob dial2" data-width="180" data-height="180" data-thickness="0.15" data-fgColor="#8986df" readonly>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+      <article class="container pt-4">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="card border-primary text-center">
+              <div class="card-body">
+                <h4 class="card-title">예측차트</h4>
+                <small>현재시간 이후 5시간의 데이터를 예측합니다.</small><hr/>
+                <div class="row">
+                  <div class="col-sm-6 text-center bg-light" style="border-radius:30px 0 0 30px">
+                      <div class="card-body">
+                        <div id="chartdiv"  style="height:500px; width: 100%;"></div>
+                        <h5>(단위 : ㎍/㎥)</h5>
+                      </div>
+                  </div>
+                  <div class="col-sm-6 text-center bg-light" style="border-radius: 0 30px 30px 0;">
+                      <div class="card-body">
+                        <div id="chartdiv1" style="height:500px; width: 100%;"></div>
+                        <h5>(단위 : ppm)</h5>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+      <article class="container pt-3">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <div class="card border-primary">
+              <div class="card-body">
+                <h4 class="card-title">학습용 데이터</h4><small>수집된 데이터는 2015년 01월01일 01시~2019년 12월 1일 00시까지 입니다.</small><hr/>
+                <div id="chartdiv2" style="height:700px; width: 100%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+    <footer>
+      <div class="jumbotron text-center mt-5 mb-0 bg-main">
+        <p><small>텐서플로우를 활용한 대기질 예측 정보제공 사이트.<br/>※실시간 관측자료는 측정소 현지 사정이나 데이터 수신에 따라 지연 및 미제공될 수 있습니다.<br/>by <span class="text-info">이상찬,차민규,이도연,정윤진</span></small></p>
+      </div>
+    </footer>
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <!-- <script src="./js/weather.js" type="text/javascript"></script> -->
+    <!-- bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="./plugins/common/common.min.js"></script>
+    <!-- font awesome -->
+    <script src="https://kit.fontawesome.com/e0de2813f8.js" crossorigin="anonymous"></script>
+    <!-- chart.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js" integrity="sha256-TQq84xX6vkwR0Qs1qH5ADkP+MvH0W+9E7TdHJsoIQiM=" crossorigin="anonymous"></script>
+    <!-- progress-bar -->
+    <script src="./plugins/jQuery-Knob-master/js/jquery.knob.js"></script>
+    <!-- back4app -->
+    <script type="text/javascript" src="https://unpkg.com/parse/dist/parse.min.js"></script>
+    <!-- parse server 사용을 위한 javascript sdk cdn -->
+    <script type="text/javascript" src="https://npmcdn.com/parse/dist/parse.min.js"></script>
+    <!-- amCharts -->
+    <script src="https://www.amcharts.com/lib/4/core.js"></script>
+    <script src="https://www.amcharts.com/lib/4/charts.js"></script>
+    <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+    <script src="https://www.amcharts.com/lib/4/plugins/forceDirected.js"></script>
+    <script src="https://www.amcharts.com/lib/4/themes/frozen.js"></script>
+    <script src="https://www.amcharts.com/lib/4/themes/kelly.js"></script>
+    <!-- javascript -->
+    <script src="./js/basicmade.js"></script>
+    <script src="./js/weather.js"></script>
+    <script src="./js/menu3predic.js"></script>
+    <script src="./js/menu3forecast.js"></script>
+  </body>
+</html>

@@ -4,31 +4,30 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title> 대기질 예측 - 텐서플로우를 활용한</title>
+    <title> 국지성 대기환경 예측 - 텐서플로우를 활용한</title>
     <!-- css -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://bootswatch.com/4/materia/bootstrap.min.css">
-    <link rel="stylesheet" href="https://bootswatch.com/4/materia/bootstrap.css">
+    <link rel="stylesheet" href="./css/materia.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
     <link href="./css/style.css" rel="stylesheet">
-    <link href="./css/madecss.css" rel="stylesheet">
+    <link href="css/madecss.css" rel="stylesheet" type="text/css">
  </head>
   <body>
     <header class="hero-wrap text-center mb-0 bg-hd text-dark" style="background-image: url(./file/cloudback1.gif);" data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
         <div class="container">
           <div class="dre row description align-items-center justify-content-center">
-            <div class="col-sm-10 text-left">
-              <div class="CurrIcon cIT"></div>
-              <div class="CurrTemp cIT"></div>
-              <a href="#" onclick="getLocation()"><span class="but-gps fas fa-map-marker-alt"></span></a>
-              <div class="CurrCity ciD"></div>
-              <div class="CurrDescription ciD"></div>
+            <div class="col-lg-10 text-left">
+              <div class="Maincity"><p>서울특별시 강서구</p></div>
+              <div id="Ctemp"></div>
+              <i class="fa fa-arrow-up i-wind"></i>&nbsp;<div id="Cwind"></div>
+              <div id="Crain"></div>
+              <span id="Chum">습도 </span><div id="Chumidity"></div>&nbsp;<img src="./icons/made-icons/dropicon/0.png" id="hum-img">
               </div>
             </div>
           </div>
     </header>
     <nav class="navbar navbar-expand-sm fixed-top navbar-light navbar-right bg-white bg-hd">
-      <!-- <a class="navbar-brand" href="./index.html"> ⓉAQ-P(임시로고) </a> -->
       <span id="dpTime"></span>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -36,42 +35,96 @@
         <div class="collapse navbar-collapse" id="navbarColor02">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="./index.html"> 홈 <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="https://secretdoen.shop/index.html"> HOME <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item navmy">
-            <a class="nav-link" href="./menu-2.html"> 실시간 정보 </a>
+            <a class="nav-link" href="http://secretdoen.shop/menu-2.html"> 실시간 정보 </a>
           </li>
           <li class="nav-item navmy">
-            <a class="nav-link" href="./menu-3.html"> 예측 정보</a>
+            <a class="nav-link" href="https://secretdoen.shop/menu-3.html"> 예측 정보</a>
           </li>
           <li class="nav-item navmy">
-            <a class="nav-link" href="#"> About </a>
+            <a class="nav-link" href="http://secretdoen.shop/menu-4.html"> About </a>
           </li>
         </ul>
       </div>
     </nav>
     <section>
       <article>
-        <a href="#" class="top">︽</a>
+        <a href="#" class="top"><i class="fas fa-arrow-alt-circle-up"></i></a>
       </article>
       <article class="container pt-1">
         <div class="row">
-          <div class="col-sm-5">
+          <div class="col-lg-4">
             <div class="card border-primary mb-3" style="max-width: 100rem;">
-              <div class="card-body">
-                <!-- <i class="far fa-grin-squint" style="color:blue; font-size: 80px;"></i> -->
-                <i class="fas fa-grin-squint fa-5x" style="color:#0066ff; padding-right:10px;"></i>
-                <!-- <i class="far fa-smile" style="color:green; font-size: 80px;"></i> -->
-                <i class="fas fa-smile fa-5x" style="color:#009933; padding-right:10px;"> </i>
-                <!-- <i class="far fa-frown" style="color:yellow; font-size: 80px;"></i> -->
-                <i class="fas fa-frown fa-5x" style="color:#ffcc00;padding-right:10px;"> </i>
-                <i class="fas fa-dizzy fa-5x" style="color:#ff1a1a"></i>
+              <div class="card-body text-center">
+                <div class="card-title text-left"><h3>통합대기환경등급</h3></div><hr/>
+                <img src="./file/grade/기본.png" id="i-grade"><br/>
               </div>
+              <small><p class="text-left Cdate"></p></small>
             </div>
           </div>
-          <div class="col-sm-7">
+          <div class="col-lg-8">
             <div class="card border-primary mb-3" style="max-width: 100rem;">
-              <div class="card-body">
+              <div class="card-body text-center">
+                <div class="card-title text-left"><h3 style="display:inline">실시간 대기질</h3>
+                <small style="display:inline">차트를 보려면 버튼을 눌러주세요.</small><hr/></div>
+                  <div class="btnmy">
+                    <button type="button" onclick="showhide(1)" class="btn btn-light btst" id="btn-10" >미세먼지</button>
+                    <button type="button" onclick="showhide(2)" class="btn btn-light btst" id="btn-25" style="margin-top:10px">초미세먼지</button>
+                    <button type="button" onclick="showhide(3)" class="btn btn-light btst" id="btn-o3" style="margin-top:10px">오존</button>
+                    <button type="button" onclick="showhide(4)" class="btn btn-light btst" id="btn-no2" style="margin-top:10px">이산화질소</button>
+                    <button type="button" onclick="showhide(5)" class="btn btn-light btst" id="btn-co" style="margin-top:10px">일산화탄소</button>
+                    <button type="button" onclick="showhide(6)" class="btn btn-light btst" id="btn-so2" style="margin-top:10px">아황산가스</button>
+                  </div>
+                  <div id="currD1" style="display:none"><br/>
+                    <canvas id="chart10" width="800" height="200"></canvas><br/>
+                    <p><img src="./icons/made-icons/pie좋음.png" class="i-icons"><small>좋음 0~30</small>
+                    &nbsp;<img src="./icons/made-icons/pie보통.png" class="i-icons"><small>보통 31~80</small>
+                    &nbsp;<img src="./icons/made-icons/pie나쁨.png" class="i-icons"><small>나쁨 81~150</small>
+                    &nbsp;<img src="./icons/made-icons/pie매우나쁨.png" class="i-icons"><small>매우나쁨 151~</small>
+                    &nbsp;<img src="./icons/made-icons/pie점검중.png" class="i-icons"><small>점검중</small></p>
+                  </div>
+                  <div id="currD2" style="display:none"><br/>
+                    <canvas id="chart25" width="800" height="200"></canvas><br/>
+                    <p><img src="./icons/made-icons/pie좋음.png" class="i-icons"><small>좋음 0~15</small>
+                    &nbsp;<img src="./icons/made-icons/pie보통.png" class="i-icons"><small>보통 16~35</small>
+                    &nbsp;<img src="./icons/made-icons/pie나쁨.png" class="i-icons"><small>나쁨 36~75</small>
+                    &nbsp;<img src="./icons/made-icons/pie매우나쁨.png" class="i-icons"><small>매우나쁨 76~</small>
+                    &nbsp;<img src="./icons/made-icons/pie점검중.png" class="i-icons"><small>점검중</small></p>
+                  </div>
+                  <div id="currD3" style="display:none"><br/>
+                    <canvas id="charto3" width="800" height="200"></canvas><br/>
+                    <p><img src="./icons/made-icons/pie좋음.png" class="i-icons"><small>좋음 0~0.03</small>
+                    &nbsp;<img src="./icons/made-icons/pie보통.png" class="i-icons"><small>보통 0.031~0.09</small>
+                    &nbsp;<img src="./icons/made-icons/pie나쁨.png" class="i-icons"><small>나쁨 0.091~0.15</small>
+                    &nbsp;<img src="./icons/made-icons/pie매우나쁨.png" class="i-icons"><small>매우나쁨 0.151~</small>
+                    &nbsp;<img src="./icons/made-icons/pie점검중.png" class="i-icons"><small>점검중</small></p>
+                  </div>
+                  <div id="currD4" style="display:none"><br/>
+                    <canvas id="chartno2" width="800" height="200"></canvas><br/>
+                    <p><img src="./icons/made-icons/pie좋음.png" class="i-icons"><small>좋음 0~0.03</small>
+                    &nbsp;<img src="./icons/made-icons/pie보통.png" class="i-icons"><small>보통 0.031~0.06</small>
+                    &nbsp;<img src="./icons/made-icons/pie나쁨.png" class="i-icons"><small>나쁨 0.061~0.15</small>
+                    &nbsp;<img src="./icons/made-icons/pie매우나쁨.png" class="i-icons"><small>매우나쁨 0.151~</small>
+                    &nbsp;<img src="./icons/made-icons/pie점검중.png" class="i-icons"><small>점검중</small></p>
+                  </div>
+                  <div id="currD5" style="display:none"><br/>
+                    <canvas id="chartco" width="800" height="200"></canvas><br/>
+                    <p><img src="./icons/made-icons/pie좋음.png" class="i-icons"><small>좋음 0~2</small>
+                    &nbsp;<img src="./icons/made-icons/pie보통.png" class="i-icons"><small>보통 2.01~9</small>
+                    &nbsp;<img src="./icons/made-icons/pie나쁨.png" class="i-icons"><small>나쁨 9.01~15</small>
+                    &nbsp;<img src="./icons/made-icons/pie매우나쁨.png" class="i-icons"><small>매우나쁨 15.01~</small>
+                    &nbsp;<img src="./icons/made-icons/pie점검중.png" class="i-icons"><small>점검중</small></p>
+                  </div>
+                  <div id="currD6" style="display:none"><br/>
+                    <canvas id="chartso2" width="800" height="200"></canvas><br/>
+                    <p><img src="./icons/made-icons/pie좋음.png" class="i-icons"><small>좋음 0~0.02</small>
+                    &nbsp;<img src="./icons/made-icons/pie보통.png" class="i-icons"><small>보통 0.021~0.05</small>
+                    &nbsp;<img src="./icons/made-icons/pie나쁨.png" class="i-icons"><small>나쁨 0.051~0.15</small>
+                    &nbsp;<img src="./icons/made-icons/pie매우나쁨.png" class="i-icons"><small>매우나쁨 0.151~</small>
+                    &nbsp;<img src="./icons/made-icons/pie점검중.png" class="i-icons"><small>점검중</small></p>
+                  </div>
               </div>
             </div>
           </div>
@@ -81,43 +134,58 @@
         <div class="card border-primary mb-3" style="max-width: 100rem;">
           <div class="card-body">
             <div class="card-title">
-              <h3>예측 데이터</h3>
+              <h3>예측 대기질 추이</h3>
+              <small>다음 시간부터 5시간 후까지 간략하게 표시합니다.</small>
+              <div id="test">
+
+              </div>
             </div><hr/>
-            <div class="row pt-3">
-              <div class="col-sm-6">
+            <div class="row pt-3 text-center">
+              <div class="col-lg-4">
                 <div class="card-box">
-                  <h4> O<sub>3</sub> </h4><br/>
-                  <div id="lineChart-1"></div><br/>
+                    <h4> O<small>3</small> </h4><br/>
+                    <div id="lineChart-1" style="width:100%; height: auto;"></div>
                 </div>
               </div>
-              <div class="col-sm-4">
+              <div class="col-lg-4">
                 <div class="card-box">
-                  <h4> PM<sub>10</sub> </h4><br/>
-                  <div id="lineChart-2"></div><br/>
+                  <h4> PM<small>10</small> </h4><br/>
+                  <div id="lineChart-2" style="width:100%; height: auto;"></div>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="card-box">
+                  <h4> PM<small>2.5</small> </h4><br/>
+                  <div id="lineChart-3" style="width:100%; height: auto;"></div>
                 </div>
               </div>
             </div>
-            <div class="row pt-3">
-              <div class="col-sm-6">
-                <div class="card-box">
-                  <h4> PM<sub>2.5</sub> </h4><br/>
-                  <div id="lineChart-3"></div><br/>
-                </div>
-              </div>
-              <div class="col-sm-4">
+            <div class="row pt-3 text-center">
+              <div class="col-lg-4">
                 <div class="card-box">
                   <h4> CO </h4><br/>
-                  <div id="lineChart-4"></div><br/>
+                  <div id="lineChart-4" style="width:100%; height: auto;"></div>
                 </div>
               </div>
-            </div>
+              <div class="col-lg-4">
+                <div class="card-box">
+                  <h4> SO<small>2</small> </h4><br/>
+                  <div id="lineChart-5" style="width:100%; height: auto;"></div><br/>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="card-box">
+                  <h4> NO<small>2</small> </h4><br/>
+                  <div id="lineChart-6" style="width:100%;"></div>
+                </div>
+              </div>
           </div>
         </div>
       </article>
     </section>
     <footer>
       <div class="jumbotron text-center mt-5 mb-0 bg-main">
-        <p><small>20.3.11) 텐서플로우를 활용한 대기질 예측 정보제공 사이트.<br/>자료제공:공공데이터/에어코리아/오픈웨더맵.<br/>by <span class="text-info">이상찬,차민규,이도연,정윤진</span></small></p>
+        <p><small>텐서플로우를 활용한 대기질 예측 정보제공 사이트.<br/>※실시간 관측자료는 측정소 현지 사정이나 데이터 수신에 따라 지연 및 미제공될 수 있습니다.<br/>by <span class="text-info">이상찬,차민규,이도연,정윤진</span></small></p>
       </div>
     </footer>
     <!-- jquery -->
@@ -130,18 +198,17 @@
     <!-- font awesome -->
     <script src="https://kit.fontawesome.com/e0de2813f8.js" crossorigin="anonymous"></script>
     <!-- sparkline.js -->
-    <script src="plugins/jquery.sparkline/jquery.sparkline.min.js"></script>
+    <script src="https://omnipotent.net/jquery.sparkline/2.1.2/jquery.sparkline.min.js"></script>
     <!-- chart.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js" integrity="sha256-TQq84xX6vkwR0Qs1qH5ADkP+MvH0W+9E7TdHJsoIQiM=" crossorigin="anonymous"></script>
-    <!--  flot-chart js -->
-    <script src="./plugins/flot/js/jquery.flot.min.js"></script>
-    <script src="./plugins/flot/js/jquery.flot.pie.js"></script>
-    <script src="./plugins/flot/js/jquery.flot.resize.js"></script>
-    <script src="./plugins/flot/js/jquery.flot.spline.js"></script>
-    <script src="./plugins/flot/js/jquery.flot.init.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <!-- back4app -->
+    <script type="text/javascript" src="https://unpkg.com/parse/dist/parse.min.js"></script>
+    <!-- parse server 사용을 위한 javascript sdk cdn -->
+    <script type="text/javascript" src="https://npmcdn.com/parse/dist/parse.min.js"></script>
     <!-- javascript -->
-    <script src="./js/madejs.js"></script>
-    <script type="text/javascript">
-    </script>
+    <script src="./js/basicmade.js"></script>
+    <script src="./js/indexmadejs.js"></script>
+    <script src="./js/crawlhome.js"></script>
+    <!-- <script src="./js/indexmadejs.js"></script> -->
   </body>
 </html>
