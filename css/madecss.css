@@ -1,47 +1,37 @@
 @CHARSET "UTF-8"
 @font-face{
-        font-family: '서울한강체 B';
-        src: url(font/SeoulHangangB.ttf) format('truetype');
+        font-family: '나눔고딕';
+        src: url(./font/NanumGothic.ttf) format('truetype');
 }
-@font-face{
-        font-family: '나눔스퀘어라운드 ExtraBold';
-        src: url(font/NanumSquareRoundEB.ttf) format('truetype');
+@font-face {
+  font-family: 'BMDOHYEON';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMDOHYEON.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
-     .bg-main{
-         background-color:#003366;}
+     .bg-main{background-color:#003366;}
       html,body{
-        font-family: '서울한강체 B','맑은고딕',sans-serif;
+        font-family: '나눔고딕','맑은고딕',sans-serif;
         font-size:100%; background-color:#f6f6f6;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
       }
       .bg-hd{
         background-size:cover;
-        font-family: '나눔스퀘어라운드 ExtraBold','맑은고딕',sans-serif;
+        font-family: 'BMDOHYEON', '맑은고딕',sans-serif;
         /* text-shadow: 3px 2px 2px white; */
       }
       .active{font-size: 150%;}
       .navbar-brand{
-        font-size: 170%;
-        margin-left: 10px;
+        font-size: 170%; margin-left: 10px;
       }
       .navbar-nav{padding-top: 4px; padding-bottom: 4px;}
        a.top {
-        position: fixed;
-        right: 15px;
-        bottom: 50px;
-        font-size: 50px;
-        display: none;
+        position: fixed; right: 15px; bottom: 50px; font-size: 50px; display: none; z-index: 2;
        }
-       a.top:hover{
-        color:white;
-       }
+       a.top:hover{color:white;}
        .overlay{
-         position: absolute;
-         top: 0;
-         bottom: 0;
-         left: 0;
-         right: 0;
-         content: '';
-         opacity: 1;
+         position: absolute; top: 0; bottom: 0; left: 0; right: 0; content: ''; opacity: 1;
          background: rgba(255, 255, 255, 0);
          background: -moz-linear-gradient(top, rgba(255, 255, 255, 0) 0%, #f6f6f6 100%);
          background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255, 255, 255, 0)), color-stop(100%, #f6f6f6));
@@ -53,38 +43,130 @@
          filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f6f6f6', GradientType=0 );
          }
       .hero-wrap {
-        width: 100%;
-        position: relative;
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: top center;
-        height: 500px;
+        width: 100%; position: relative; background-size: cover;background-repeat: no-repeat;
+        background-position: top center; height: 500px;
       }
-       .CurrIcon, .CurrTemp{
-         display: inline-block;
-         text-align: center;
-       }
        .CurrIcon{
-         margin-right: 2px;
+         font-size:3.5rem
+       }
+       .CurrTemp{
+         font-size:1.8rem;
        }
        #dpTime{
-         font-size: 200%;
-         margin-right: 20px;
-         font-weight: bold;
+         font-size: 200%;margin-right: 20px;font-weight: bold;
        }
        .cIT{
-         padding-top:200px;
-         font-size:2.5rem;
-         z-index: 4;
+         padding-top:200px;font-size:2.5rem;z-index: 4;
        }
        .ciD{
-         font-size:2rem;
-         z-index: 4;
+         font-size:2rem;z-index: 4;
        }
-       .but-gps{
-         margin-left: 5px;
-         font-size: 1.8rem;
-         color:white;
-         text-shadow: 3px 2px 2px #595959;
+       .Maincity{
+         padding-top:180px;font-size:2rem; z-index: 4;
+       }
+       .but-gps, .but-gps2{
+         font-size: 1.8rem; color:#99ccff; text-shadow: 3px 2px 2px #0073e6;
        }
        .navmy{font-size: 130%;}
+       #i-grade{
+         height: auto; width: inherit; max-width:100%;
+       }
+       .btn{
+         font-weight: bold;
+       }
+       .modalmy{
+         width: 100%; font-weight: normal;
+       }
+       .i-icons{
+         height: 25px;
+       }
+       #Cwind{display:inline-block;font-size: 1.4rem;z-index: 4;}
+       .i-wind{display: inline-block; font-size: 24px;z-index: 4; padding: 3px;}
+       #Ctemp,#Crain,#Chum{font-size: 1.4rem;z-index: 4;}
+       #hum-img{
+         display: inline-block; height: auto; width: 23px;z-index: 4; padding-bottom: 10px;
+       }
+       #Chumidity{display:inline-block;z-index: 4; font-size: 1.1rem;}
+       .selectbtn-info{background: #1a56ff; color: #fff; border-color: #0044ff; box-shadow: none; font-size: 12%; font-weight: normal;}
+       .selectbtn-success{background: #47ce47; color: #fff; border-color: #30b530; box-shadow: none; font-size: 12%; font-weight: normal;}
+       .selectbtn-warning{background: #ee8227; color: #fff; border-color: #ec7513; box-shadow: none; font-size: 12%; font-weight: normal;}
+       .selectbtn-danger{background: #ff2b2b; color: #fff; border-color: #ff1a1a; box-shadow: none; font-size: 12%; font-weight: normal;}
+       #total-table{font-size: 13px; }
+       #total-table:hover tbody tr:hover td{ background: #ffe066; color: black;}
+       th{font-size: 14px;}
+       #tem-wear{font-family: 'Nanum Pen Script',sans-serif;color:black; text-align: center; position: absolute; top: 42%; left:20%; transform: translate(-13%,-50%);}
+       .text-bub img{height: auto; width:100%; vertical-align: middle;}
+       .text-bub{position: relative; font-size: 130%; }
+       #Currwind{color: #99ceff; display:inline-block; font-size: 18px;}
+       #Wspeed{color: #99ceff; font-size: 18px;}
+       #Currhum{color: #99ceff; display:inline-block; font-size: 20px;}
+       #Ihum{
+         display: inline-block; height: auto; width: 20px; padding-bottom: 10px;}
+      #feelTemp{ font-size: 12px; padding-bottom: 10px;}
+      .badge{font-size: 12px;}
+      .border-my:hover tbody tr:hover td{
+        background-color: #d3ebf8; color: black;
+      }
+      #myInput, #myInput2{
+        border: none;
+         background: #99ccff;
+         padding: 6px;
+         font-size: 16px;
+         width: 80%;
+         border-radius: 6px;
+         color: white;
+      }
+      .btn{margin-top:10px;padding-left:14px;padding-right:14px}
+      #myInput:focus, #myInput2:focus{outline: none;}
+      .table-hover-cells > tbody > tr > th:hover,
+      .table-hover-cells > tbody > tr > td:hover {
+        background-color: #b3d9ff; color: black; font-weight: bold;
+      }
+
+      .table-hover-cells > tbody > tr > th.active:hover,
+      .table-hover-cells > tbody > tr > td.active:hover,
+      .table-hover-cells > tbody > tr.active > th:hover,
+      .table-hover-cells > tbody > tr.active > td:hover {
+        background-color: #b3d9ff;
+      }
+
+      .table-hover.table-hover-cells > tbody > tr:hover > th:hover,
+      .table-hover.table-hover-cells > tbody > tr:hover > td:hover {
+        background-color: #b3d9ff;
+      }
+
+      .table-hover.table-hover-cells > tbody > tr.active:hover > th:hover,
+      .table-hover.table-hover-cells > tbody > tr.active:hover > td:hover {
+        background-color: #b3d9ff;
+      }
+      #pm25, #pm10, #co, #no2, #so2, #o3{
+        border-right: 1px solid #333333;
+      }
+      #dated{font-family: 'BMDOHYEON', '맑은고딕',sans-serif; color:#fff; font-size: 130%;
+      text-shadow: 2px 0 0 #333333, -2px 0 0 #333333, 0 2px 0 #333333, 0 -2px 0 #333333, 1px 1px #333333, -1px -1px 0 #333333, 1px -1px 0 #333333, -1px 1px 0 #333333;
+    }
+      .foretable tr{border-bottom: 2px solid #4f65e3; height: 100px}
+      .tablescroll::-webkit-scrollbar {
+        width: 5px;
+      }
+      .tablescroll::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+      .tablescroll::-webkit-scrollbar-thumb {
+        background: #4f65e3;
+      }
+      .tablescroll::-webkit-scrollbar-thumb:hover {
+        background: #223edd;
+      }
+      #forecastCITY
+      {
+        font-family: 'BMDOHYEON', '맑은고딕',sans-serif; color:#4db0e6; font-size: 140%;
+        display: inline-block; text-align: left;
+        text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
+      }
+      .foreicon{font-size: 180%; color: #4db0e6;
+        text-shadow: 2px 0 0 #fff, -1px 0 0 #fff, 0 1px 0 #fff, 0 -1px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
+      }
+      .foretable{color:white; font-family: 'Nanum Pen Script',sans-serif; font-size: 160%}
+      .modalmy2{width: 50px; display:inline-block; border-radius: 50%; height: 50px}
+      .ootable th{white-space:nowrap;}
